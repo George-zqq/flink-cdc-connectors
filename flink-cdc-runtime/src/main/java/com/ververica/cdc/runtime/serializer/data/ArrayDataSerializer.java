@@ -93,6 +93,7 @@ public class ArrayDataSerializer extends TypeSerializer<ArrayData> {
                     return new GenericArrayData(Arrays.copyOf(array.toShortArray(), array.size()));
                 case INTEGER:
                     return new GenericArrayData(Arrays.copyOf(array.toIntArray(), array.size()));
+                case LARGEINT:
                 case BIGINT:
                     return new GenericArrayData(Arrays.copyOf(array.toLongArray(), array.size()));
                 case FLOAT:

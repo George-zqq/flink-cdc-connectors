@@ -182,6 +182,7 @@ public interface ArrayData {
             case TIME_WITHOUT_TIME_ZONE:
                 elementGetter = ArrayData::getInt;
                 break;
+            case LARGEINT:
             case BIGINT:
                 elementGetter = ArrayData::getLong;
                 break;

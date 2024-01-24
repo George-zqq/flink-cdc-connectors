@@ -100,6 +100,7 @@ public interface BinaryWriter {
             case TIME_WITHOUT_TIME_ZONE:
                 writer.writeInt(pos, (int) o);
                 break;
+            case LARGEINT:
             case BIGINT:
                 writer.writeLong(pos, (long) o);
                 break;

@@ -337,7 +337,7 @@ public class MySqlSourceConfigFactory implements Serializable {
         // debezium use "long" mode to handle unsigned bigint by default,
         // but it'll cause lose of precise when the value is larger than 2^63,
         // so use "precise" mode to avoid it.
-        props.put("bigint.unsigned.handling.mode", "precise");
+        props.put("bigint.unsigned.handling.mode", "long");
 
         if (serverIdRange != null) {
             int serverId = serverIdRange.getServerId(subtaskId);

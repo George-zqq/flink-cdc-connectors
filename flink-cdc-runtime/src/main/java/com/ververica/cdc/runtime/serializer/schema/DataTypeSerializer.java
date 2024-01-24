@@ -16,33 +16,13 @@
 
 package com.ververica.cdc.runtime.serializer.schema;
 
+import com.ververica.cdc.common.types.*;
 import org.apache.flink.api.common.typeutils.SimpleTypeSerializerSnapshot;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
 import org.apache.flink.api.common.typeutils.TypeSerializerSnapshot;
 import org.apache.flink.core.memory.DataInputView;
 import org.apache.flink.core.memory.DataOutputView;
 
-import com.ververica.cdc.common.types.ArrayType;
-import com.ververica.cdc.common.types.BigIntType;
-import com.ververica.cdc.common.types.BinaryType;
-import com.ververica.cdc.common.types.BooleanType;
-import com.ververica.cdc.common.types.CharType;
-import com.ververica.cdc.common.types.DataType;
-import com.ververica.cdc.common.types.DateType;
-import com.ververica.cdc.common.types.DecimalType;
-import com.ververica.cdc.common.types.DoubleType;
-import com.ververica.cdc.common.types.FloatType;
-import com.ververica.cdc.common.types.IntType;
-import com.ververica.cdc.common.types.LocalZonedTimestampType;
-import com.ververica.cdc.common.types.MapType;
-import com.ververica.cdc.common.types.RowType;
-import com.ververica.cdc.common.types.SmallIntType;
-import com.ververica.cdc.common.types.TimeType;
-import com.ververica.cdc.common.types.TimestampType;
-import com.ververica.cdc.common.types.TinyIntType;
-import com.ververica.cdc.common.types.VarBinaryType;
-import com.ververica.cdc.common.types.VarCharType;
-import com.ververica.cdc.common.types.ZonedTimestampType;
 import com.ververica.cdc.runtime.serializer.EnumSerializer;
 
 import java.io.IOException;
@@ -169,6 +149,9 @@ public class DataTypeSerializer extends TypeSerializer<DataType> {
         } else if (record instanceof BigIntType) {
             enumSerializer.serialize(DataTypeClass.BIGINT, target);
             target.writeBoolean(record.isNullable());
+        } else if (record instanceof LargeIntType) {
+            enumSerializer.serialize(DataTypeClass.LARGEINT, target);
+            target.writeBoolean(record.isNullable());
         } else {
             throw new IllegalArgumentException("Unknown data type : " + record);
         }
@@ -224,6 +207,8 @@ public class DataTypeSerializer extends TypeSerializer<DataType> {
                 return new DoubleType(isNullable);
             case BIGINT:
                 return new BigIntType(isNullable);
+            case LARGEINT:
+                return new LargeIntType(isNullable);
             default:
                 throw new IllegalArgumentException("Unknown data type : " + dataTypeClass);
         }
@@ -292,6 +277,7 @@ public class DataTypeSerializer extends TypeSerializer<DataType> {
         DATE,
         ZONED_TIMESTAMP,
         DOUBLE,
-        BIGINT
+        BIGINT,
+        LARGEINT
     }
 }

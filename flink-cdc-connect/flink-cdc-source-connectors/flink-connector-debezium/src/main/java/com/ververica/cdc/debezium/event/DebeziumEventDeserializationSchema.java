@@ -176,6 +176,7 @@ public abstract class DebeziumEventDeserializationSchema extends SourceRecordEve
             case INTEGER:
                 return this::convertToInt;
             case BIGINT:
+            case LARGEINT:
                 return this::convertToLong;
             case DATE:
                 return this::convertToDate;

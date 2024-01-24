@@ -22,21 +22,7 @@ import com.ververica.cdc.common.data.RecordData;
 import com.ververica.cdc.common.event.TableId;
 import com.ververica.cdc.common.schema.Column;
 import com.ververica.cdc.common.schema.Schema;
-import com.ververica.cdc.common.types.BigIntType;
-import com.ververica.cdc.common.types.BooleanType;
-import com.ververica.cdc.common.types.CharType;
-import com.ververica.cdc.common.types.DataType;
-import com.ververica.cdc.common.types.DataTypeDefaultVisitor;
-import com.ververica.cdc.common.types.DateType;
-import com.ververica.cdc.common.types.DecimalType;
-import com.ververica.cdc.common.types.DoubleType;
-import com.ververica.cdc.common.types.FloatType;
-import com.ververica.cdc.common.types.IntType;
-import com.ververica.cdc.common.types.LocalZonedTimestampType;
-import com.ververica.cdc.common.types.SmallIntType;
-import com.ververica.cdc.common.types.TimestampType;
-import com.ververica.cdc.common.types.TinyIntType;
-import com.ververica.cdc.common.types.VarCharType;
+import com.ververica.cdc.common.types.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -146,6 +132,7 @@ public class StarRocksUtils {
             case INTEGER:
                 fieldGetter = record -> record.getInt(fieldPos);
                 break;
+            case LARGEINT:
             case BIGINT:
                 fieldGetter = record -> record.getLong(fieldPos);
                 break;
@@ -215,7 +202,7 @@ public class StarRocksUtils {
     public static final String SMALLINT = "SMALLINT";
     public static final String INT = "INT";
     public static final String BIGINT = "BIGINT";
-    public static final String LARGEINT = "BIGINT UNSIGNED";
+    public static final String LARGEINT = "LARGEINT";
     public static final String FLOAT = "FLOAT";
     public static final String DOUBLE = "DOUBLE";
     public static final String DECIMAL = "DECIMAL";
@@ -276,6 +263,12 @@ public class StarRocksUtils {
         public StarRocksColumn.Builder visit(BigIntType bigIntType) {
             builder.setDataType(BIGINT);
             builder.setNullable(bigIntType.isNullable());
+            return builder;
+        }
+        @Override
+        public StarRocksColumn.Builder visit(LargeIntType largeIntType) {
+            builder.setDataType(LARGEINT);
+            builder.setNullable(largeIntType.isNullable());
             return builder;
         }
 

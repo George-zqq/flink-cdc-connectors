@@ -79,6 +79,12 @@ public enum DataTypeRoot {
             DataTypeFamily.INTEGER_NUMERIC,
             DataTypeFamily.EXACT_NUMERIC),
 
+    LARGEINT(
+            DataTypeFamily.PREDEFINED,
+            DataTypeFamily.NUMERIC,
+            DataTypeFamily.INTEGER_NUMERIC,
+            DataTypeFamily.EXACT_NUMERIC),
+
     FLOAT(DataTypeFamily.PREDEFINED, DataTypeFamily.NUMERIC, DataTypeFamily.APPROXIMATE_NUMERIC),
 
     DOUBLE(DataTypeFamily.PREDEFINED, DataTypeFamily.NUMERIC, DataTypeFamily.APPROXIMATE_NUMERIC),

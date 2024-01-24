@@ -154,6 +154,7 @@ public class MySqlTypeUtils {
             case BIGINT:
                 return DataTypes.BIGINT();
             case BIGINT_UNSIGNED:
+                return DataTypes.LARGEINT();
             case BIGINT_UNSIGNED_ZEROFILL:
             case SERIAL:
                 return DataTypes.DECIMAL(20, 0);

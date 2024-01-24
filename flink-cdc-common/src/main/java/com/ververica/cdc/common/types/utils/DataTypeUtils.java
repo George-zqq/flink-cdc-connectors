@@ -58,6 +58,7 @@ public class DataTypeUtils {
             case DATE:
             case TIME_WITHOUT_TIME_ZONE:
                 return Integer.class;
+            case LARGEINT:
             case BIGINT:
                 return Long.class;
             case FLOAT:
@@ -113,6 +114,7 @@ public class DataTypeUtils {
                 return org.apache.flink.table.api.DataTypes.DATE();
             case TIME_WITHOUT_TIME_ZONE:
                 return org.apache.flink.table.api.DataTypes.TIME(precision);
+            case LARGEINT:
             case BIGINT:
                 return org.apache.flink.table.api.DataTypes.BIGINT();
             case FLOAT:

@@ -73,6 +73,10 @@ public abstract class DataTypeDefaultVisitor<R> implements DataTypeVisitor<R> {
     public R visit(BigIntType bigIntType) {
         return defaultMethod(bigIntType);
     }
+    @Override
+    public R visit(LargeIntType largeIntType) {
+        return defaultMethod(largeIntType);
+    }
 
     @Override
     public R visit(FloatType floatType) {

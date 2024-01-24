@@ -200,6 +200,7 @@ public interface RecordData {
             case TIME_WITHOUT_TIME_ZONE:
                 fieldGetter = record -> record.getInt(fieldPos);
                 break;
+            case LARGEINT:
             case BIGINT:
                 fieldGetter = record -> record.getLong(fieldPos);
                 break;

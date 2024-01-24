@@ -116,6 +116,7 @@ public final class DataTypeChecks {
             case SMALLINT:
             case INTEGER:
             case BIGINT:
+            case LARGEINT:
             case FLOAT:
             case DOUBLE:
                 return true;
@@ -194,6 +195,10 @@ public final class DataTypeChecks {
 
         @Override
         public Integer visit(BigIntType bigIntType) {
+            return 0;
+        }
+        @Override
+        public Integer visit(LargeIntType largeIntType) {
             return 0;
         }
     }

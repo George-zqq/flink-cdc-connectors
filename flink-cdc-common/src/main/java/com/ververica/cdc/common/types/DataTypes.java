@@ -110,6 +110,14 @@ public class DataTypes {
     }
 
     /**
+     * Data type of an 8-byte signed integer with values from 0 to
+     * 18,446,744,073,709,551,615.
+     *
+     * @see LargeIntType
+     */
+    public static LargeIntType LARGEINT(){return new LargeIntType(); }
+
+    /**
      * Data type of a 4-byte single precision floating point number.
      *
      * @see FloatType
